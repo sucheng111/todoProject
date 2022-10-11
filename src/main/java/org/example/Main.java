@@ -20,8 +20,8 @@ public class Main {
             if (command.equals("quit")){
                 return;
             }
-            Function matchFunction = context.matchFunction(command);
-            matchFunction.execute(command, tasks);
+            Function matchedFunction = context.matchFunction(command);
+            matchedFunction.execute(command, tasks);
         }
     }
 
