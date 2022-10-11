@@ -8,8 +8,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class Task implements Serializable {
-    String item;
-    boolean isDone;
+    public String item;
+    public boolean isDone;
 
     int index;
 

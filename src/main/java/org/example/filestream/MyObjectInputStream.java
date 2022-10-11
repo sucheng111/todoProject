@@ -1,4 +1,4 @@
-package org.example;
+package org.example.filestream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ public class MyObjectInputStream extends ObjectInputStream {
     }
 
     @Override
-    protected void readStreamHeader() throws IOException {
+    protected void readStreamHeader(){
         //重写读取头部信息方法：什么也不做
     }
 
