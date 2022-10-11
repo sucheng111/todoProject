@@ -17,8 +17,9 @@ public class Main {
 
         while (true) {
             String command = input.nextLine();
-            if (command.equals("quit"))
+            if (command.equals("quit")){
                 return;
+            }
             Function matchFunction = context.matchFunction(command);
             matchFunction.execute(command, tasks);
         }
