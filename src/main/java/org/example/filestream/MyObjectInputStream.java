@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 /**
  * @author sc.su
  */
-public class MyObjectInputStream extends ObjectInputStream {
+public class MyObjectInputStream extends ObjectInputStream implements AutoCloseable{
     public MyObjectInputStream(InputStream in) throws IOException {
         super(in);
     }

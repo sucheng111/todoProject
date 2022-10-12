@@ -13,28 +13,23 @@ import java.util.List;
  * @author sc.su
  */
 public class SerializeUtils {
-    static final String dataDirectory = "/Users/sc.su/data/";
-    static ObjectInputStream ois;
-    static ObjectOutputStream oos;
+    static final String DATA_DIRECTORY = "/Users/sc.su/data/";
     static String dataPath;
 
     public static List<Task> readFile(String user) throws IOException {
         List<Task> taskList = getTaskList();
-        try {
+        try (ObjectInputStream ois = new MyObjectInputStream(createFileInputStream())) {
             createFileIfNotExist(user);
-            ois = new MyObjectInputStream(createFileInputStream());
             taskList = (List<Task>) ois.readObject();
             taskList.forEach(System.out::println);
             return taskList;
         } catch (EOFException e) {
             return taskList;
-        }catch (InvalidClassException e){
+        } catch (InvalidClassException e) {
             clearFile(user);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("读取文件出错啦！");
             e.printStackTrace();
-        } finally {
-            ois.close();
         }
         return taskList;
     }
@@ -43,25 +38,23 @@ public class SerializeUtils {
         return new ArrayList<>();
     }
 
-    public static void writeFile(List<Task> taskList, String user) throws IOException {
-        try {
+    public static void writeFile(List<Task> taskList, String user) {
+        try (ObjectOutputStream oos = new MyObjectOutputStream(createFileOutputStream())) {
             createFileIfNotExist(user);
-            oos = new MyObjectOutputStream(createFileOutputStream());
             oos.writeObject(taskList);
             oos.flush();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            oos.close();
         }
     }
 
-    public static void createFileIfNotExist(String user) throws IOException {
-        dataPath = dataDirectory + user + ".txt";
+    public static boolean createFileIfNotExist(String user) throws IOException {
+        dataPath = DATA_DIRECTORY + user + ".txt";
         File file = new File(dataPath);
         if (!file.exists()) {
-            file.createNewFile();
+            return file.createNewFile();
         }
+        return true;
     }
 
     public static OutputStream createFileOutputStream() throws IOException {
@@ -73,10 +66,11 @@ public class SerializeUtils {
     }
 
     public static void clearFile(String user) throws IOException {
-        dataPath = dataDirectory + user + ".txt";
+        dataPath = DATA_DIRECTORY + user + ".txt";
         File file = new File(dataPath);
-        file.delete();
-        file.createNewFile();
+        if (file.delete()) {
+            file.createNewFile();
+        }
     }
 
 
