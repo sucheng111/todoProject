@@ -1,31 +1,29 @@
 package org.example;
 
+import com.google.common.collect.ImmutableMap;
 import org.example.strategy.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author sc.su
  */
 public class Context {
-    static Map<String, Function> functionMapping = new HashMap<>();
-
-    static {
-        functionMapping.put("add", new AddFunction());
-        functionMapping.put("done", new DoneFunction());
-        functionMapping.put("list", new ListFunction());
-        functionMapping.put("login", new LoginFunction());
-        functionMapping.put("logout", new LogoutFunction());
-    }
-
+    final private static Map<String, Function> FUNCTION_MAPPING = ImmutableMap.of(
+            "list", new ListFunction(),
+            "add", new AddFunction(),
+            "done", new DoneFunction(),
+            "login", new LoginFunction(),
+            "logout", new LogoutFunction()
+    );
 
     public Function matchFunction(String command) {
         String[] words = command.split(" ");
-        if (words.length < 2)
+        if (words.length < 2) {
             return new Function();
+        }
         String function = words[1];
-        return functionMapping.getOrDefault(function, new Function());
+        return FUNCTION_MAPPING.getOrDefault(function, new Function());
     }
 
 }
