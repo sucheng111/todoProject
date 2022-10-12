@@ -5,6 +5,9 @@ import org.example.Task;
 
 import java.util.List;
 
+/**
+ * @author sc.su
+ */
 public class LogoutFunction extends Function {
     @Override
     public void execute(String command, List<Task> tasks) {

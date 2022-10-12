@@ -9,6 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author sc.su
+ */
 public class SerializeUtils {
     static final String dataDirectory = "/Users/sc.su/data/";
     static ObjectInputStream ois;
@@ -25,7 +28,9 @@ public class SerializeUtils {
             return taskList;
         } catch (EOFException e) {
             return taskList;
-        } catch (Exception e) {
+        }catch (InvalidClassException e){
+            clearFile(user);
+        }catch (Exception e) {
             System.out.println("读取文件出错啦！");
             e.printStackTrace();
         } finally {
@@ -65,6 +70,13 @@ public class SerializeUtils {
 
     public static InputStream createFileInputStream() throws IOException {
         return Files.newInputStream(Paths.get(dataPath));
+    }
+
+    public static void clearFile(String user) throws IOException {
+        dataPath = dataDirectory + user + ".txt";
+        File file = new File(dataPath);
+        file.delete();
+        file.createNewFile();
     }
 
 

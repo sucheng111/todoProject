@@ -5,6 +5,9 @@ import org.example.Task;
 
 import java.util.List;
 
+/**
+ * @author sc.su
+ */
 public class ListFunction extends Function{
     @Override
     public void execute(String command, List<Task> tasks) {
@@ -18,8 +21,8 @@ public class ListFunction extends Function{
             return;
         }
         if(command.equals("todo list")){
-            tasks.stream().filter((a) -> !a.isDone).forEach(System.out::println);
-            long count = tasks.stream().filter((a) -> !a.isDone).count();
+            tasks.stream().filter((a) -> !a.getIsDone()).forEach(System.out::println);
+            long count = tasks.stream().filter((a) -> !a.getIsDone()).count();
             System.out.println("Total " + count);
             return;
         }

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * @author sc.su
+ */
 public class DoneFunction extends Function{
     @Override
     public void execute(String command, List<Task> tasks) throws IOException {
@@ -20,8 +23,8 @@ public class DoneFunction extends Function{
         Optional<Task> taskOptional = tasks.stream().filter((a) -> Objects.equals(a.getItem(), item)).findFirst();
         if (taskOptional.isPresent()) {
             Task task = taskOptional.get();
-            task.setDone(true);
-            System.out.println("Item" + task.item + " done");
+            task.doneTask();
+            System.out.println("Item" + task.getItem() + " done");
             SerializeUtils.writeFile(tasks, Main.loginUser);
         }
     }

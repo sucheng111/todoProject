@@ -5,6 +5,9 @@ import org.example.strategy.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author sc.su
+ */
 public class Context {
     static Map<String, Function> functionMapping = new HashMap<>();
 
