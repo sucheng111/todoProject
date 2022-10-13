@@ -15,13 +15,12 @@ public class Main {
     static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        Task task = new Task("1", false, 2);
         Scanner input = new Scanner(System.in);
         Context context = new Context();
 
         while (true) {
             String command = input.nextLine();
-            if (command.equals("quit")) {
+            if ("quit".equals(command)) {
                 return;
             }
             Function matchedFunction = context.matchFunction(command);

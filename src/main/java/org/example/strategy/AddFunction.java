@@ -7,6 +7,9 @@ import org.example.Task;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author sc.su
+ */
 public class AddFunction extends Function {
     @Override
     public void execute(String command, List<Task> tasks) throws IOException {
