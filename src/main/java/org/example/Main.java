@@ -11,8 +11,7 @@ import java.util.Scanner;
  * @author sc.su
  */
 public class Main {
-    public static String loginUser = null;
-    static List<Task> tasks = new ArrayList<>();
+
 
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
@@ -24,7 +23,7 @@ public class Main {
                 return;
             }
             Function matchedFunction = context.matchFunction(command);
-            matchedFunction.execute(command, tasks);
+            matchedFunction.execute(command);
         }
     }
 

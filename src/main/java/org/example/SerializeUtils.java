@@ -18,8 +18,8 @@ public class SerializeUtils {
 
     public static List<Task> readFile(String user) throws IOException {
         List<Task> taskList = getTaskList();
+        createFileIfNotExist(user);
         try (ObjectInputStream ois = new MyObjectInputStream(createFileInputStream())) {
-            createFileIfNotExist(user);
             taskList = (List<Task>) ois.readObject();
             taskList.forEach(System.out::println);
             return taskList;

@@ -3,6 +3,7 @@ package org.example.strategy;
 import org.example.Main;
 import org.example.SerializeUtils;
 import org.example.Task;
+import org.example.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,10 +13,9 @@ import java.util.List;
  */
 public class LoginFunction extends Function {
     @Override
-    public void execute(String command, List<Task> tasks) throws IOException {
+    public void execute(String command) throws IOException {
         String user = command.substring(14);
-        Main.loginUser = user;
-        tasks = SerializeUtils.readFile(user);
+        User.login(user);
         System.out.println("登陆成功！可以开始使用了");
     }
 }
