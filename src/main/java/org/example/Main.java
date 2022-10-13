@@ -3,8 +3,6 @@ package org.example;
 import org.example.strategy.Function;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
